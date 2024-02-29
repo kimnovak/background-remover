@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import "./BackgroundRemover.css";
-import AddButton from "../../components/AddButton";
+import AddButton from "../../components/AddButton/AddButton";
 import loadImage, { LoadImageResult } from "blueimp-load-image";
 import { API_KEY, API_URL, BASE64_IMAGE_HEADER } from "../../constants";
 import { useStore } from "../../store/StoreProvider";
