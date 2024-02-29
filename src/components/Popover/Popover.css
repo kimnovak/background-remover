@@ -16,9 +16,15 @@
 }
 
 .close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
+    width: 16px;
+    font-size: 8px;
     align-self: flex-end;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 100%;
     border: 1px solid var(--primary-color);
-
+    cursor: pointer;
 }

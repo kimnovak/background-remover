@@ -6,6 +6,7 @@
     color: var(--primary-color);
     font-style: bold;
     border: none;
+    cursor: pointer;
 }
 
 .folder-input {
@@ -18,4 +19,5 @@
     width: 80%;
     border-radius: 8px;
     border: 1px solid var(--primary-color);
+    cursor: pointer;
 }

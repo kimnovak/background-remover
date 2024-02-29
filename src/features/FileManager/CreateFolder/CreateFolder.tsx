@@ -19,6 +19,7 @@ const CreateFolder = () => {
         Create Folder
       </button>
       <Popover isVisible={isPopoverVisible} parentRef={createFolderBtnRef} close={() => setIsPopoverVisible(false)}>
+        <label>Folder name:</label>
         <input
           type="text"
           className="folder-input"
