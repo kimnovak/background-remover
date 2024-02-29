@@ -11,6 +11,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "blueimp-load-image": "^5.16.0",
+    "nanoid": "^5.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -42,6 +43,9 @@
     ]
   },
   "devDependencies": {
-    "@types/blueimp-load-image": "^5.14.4"
+    "@types/blueimp-load-image": "^5.14.4",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
   }
 }

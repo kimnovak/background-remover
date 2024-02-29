@@ -1,36 +1,36 @@
-import { ChangeEvent, useState } from 'react';
-import './BackgroundRemover.css';
-import AddButton from '../../components/AddButton';
-import loadImage, { LoadImageResult } from 'blueimp-load-image';
-import { API_KEY, API_URL, BASE64_IMAGE_HEADER } from '../../constants';
+import { ChangeEvent, useState } from "react";
+import "./BackgroundRemover.css";
+import AddButton from "../../components/AddButton";
+import loadImage, { LoadImageResult } from "blueimp-load-image";
+import { API_KEY, API_URL, BASE64_IMAGE_HEADER } from "../../constants";
+import { useStore } from "../../store/StoreProvider";
 
 const BackgrounRemover = () => {
-  const [result, setResult] = useState<string | null>(null)
-  
+  const [result, setResult] = useState<string | null>(null);
+  const { addImage } = useStore();
+
   let uploadImageToServer = (file: File) => {
-    loadImage(
-      file,
-      {
-        maxWidth: 400,
-        maxHeight: 400,
-        canvas: true
-      })
+    loadImage(file, {
+      maxWidth: 400,
+      maxHeight: 400,
+      canvas: true,
+    })
       .then(async (imageData: LoadImageResult) => {
-        let image = imageData.image as HTMLCanvasElement
-        
-        let imageBase64 = image.toDataURL("image/png")
-        let imageBase64Data = imageBase64.replace(BASE64_IMAGE_HEADER, "")
+        let image = imageData.image as HTMLCanvasElement;
+
+        let imageBase64 = image.toDataURL("image/png");
+        let imageBase64Data = imageBase64.replace(BASE64_IMAGE_HEADER, "");
         let data = {
           image_file_b64: imageBase64Data,
-        }
+        };
         const response = await fetch(API_URL, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'x-api-key': API_KEY
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-api-key": API_KEY,
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
         if (response.status >= 400 && response.status < 600) {
@@ -38,32 +38,36 @@ const BackgrounRemover = () => {
         }
 
         const result = await response.json();
-        const base64Result = BASE64_IMAGE_HEADER + result.result_b64
-        setResult(base64Result)
+        const base64Result = BASE64_IMAGE_HEADER + result.result_b64;
+        setResult(base64Result);
+        addImage({
+          name: file.name,
+          originalBase64: imageBase64,
+          resultBase64: base64Result,
+        });
       })
-      
-      .catch(error => {
-        console.error(error)
-      })
+
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  let onImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      uploadImageToServer(e.target.files[0]);
+    } else {
+      console.error("No file was picked");
     }
-    
-    let onImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files[0]) {
-        uploadImageToServer(e.target.files[0])
-      } else {
-        console.error("No file was picked")
-      }
-    }
-    
-    return (
-      <div className="App">
-        <header className="App-header">
-          {!result && <AddButton onImageAdd={onImageAdd}/>}
-          {result && <img src={result} width={300} alt="result from the API"/>}
-        </header>
-      </div>
-      );
-    }
-    
-    export default BackgrounRemover;
-    
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        {!result && <AddButton onImageAdd={onImageAdd} />}
+        {result && <img src={result} width={300} alt="result from the API" />}
+      </header>
+    </div>
+  );
+};
+
+export default BackgrounRemover;
