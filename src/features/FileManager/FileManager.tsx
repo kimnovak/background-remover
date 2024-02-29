@@ -3,11 +3,13 @@ import { useStore } from "../../store/StoreProvider";
 import { Folder } from "../../store/types";
 import Popover from "../../components/Popover/Popover";
 import { useRef, useState } from "react";
+import FolderItem from "../../components/Folder/Folder";
 
 const FileManager = () => {
   // TODO extract to hook
   const { folders, addFolder, setFolders, images } = useStore();
   const [folderName, setFolderName] = useState("");
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
@@ -46,8 +48,13 @@ const FileManager = () => {
 
   return (
     <>
-      <button ref={createFolderBtnRef}>Create Folder</button>
-      <Popover isVisible={true} parentRef={createFolderBtnRef}>
+      <button
+        ref={createFolderBtnRef}
+        onClick={() => setIsPopoverVisible((prev) => !prev)}
+      >
+        Create Folder
+      </button>
+      <Popover isVisible={isPopoverVisible} parentRef={createFolderBtnRef}>
         <input
           type="text"
           value={folderName}
@@ -61,7 +68,9 @@ const FileManager = () => {
           <Droppable droppableId={folderId} key={folderId}>
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
-                <div>{folder.name}</div>
+                <div>
+                  <FolderItem name={folder.name} />
+                </div>
                 <ul>
                   {folder.items.length ? (
                     folder.items.map((imageId, index) => (

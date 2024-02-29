@@ -4,8 +4,10 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
+import localforage from "localforage";
 import { Folder, ImageItem } from "./types";
 
 type StoreProviderProps = {
@@ -25,9 +27,9 @@ const INITIAL_STATE: {
       items: [],
     },
     "default-folder-1": {
-        name: "Untitled Folder 1",
-        items: [],
-      },
+      name: "Untitled Folder 1",
+      items: [],
+    },
   },
   images: {},
   addImage: (image: ImageItem) => {
@@ -38,7 +40,10 @@ const INITIAL_STATE: {
     {
     }
   },
-  setFolders: (folders: any) => {{}}
+  setFolders: (folders: any) => {
+    {
+    }
+  },
 };
 
 const StoreContext = createContext(INITIAL_STATE);
@@ -48,6 +53,53 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [images, setImages] = useState<Record<string, ImageItem>>(
     INITIAL_STATE.images
   );
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
+  const hydrateFolders = async () => {
+    try {
+      const folders: Record<string, Folder> | null = await localforage.getItem(
+        "folders"
+      );
+      console.log({ folders });
+      if (folders) {
+        setFolders(folders);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const hydrateImages = async () => {
+    try {
+      const images: Record<string, ImageItem> | null =
+        await localforage.getItem("images");
+      console.log({ images });
+      if (images) {
+        setImages(images);
+        hydrateFolders();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    if (isFirstRender) {
+        return;
+    }
+    localforage.setItem("folders", folders);
+  }, [folders]);
+
+  useEffect(() => {
+    if (isFirstRender) {
+        return;
+    }
+    localforage.setItem("images", images);
+  }, [images]);
+
+  useEffect(() => {
+    hydrateImages();
+    setIsFirstRender(false);
+  }, []);
 
   const moveImageToFolder = (imageId: string, folderId = "default-folder") => {
     setFolders((prev) => ({
