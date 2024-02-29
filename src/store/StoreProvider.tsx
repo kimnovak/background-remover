@@ -56,7 +56,6 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       const folders: Record<string, Folder> | null = await localforage.getItem(
         "folders"
       );
-      console.log({ folders });
       if (folders) {
         setFolders(folders);
       }
