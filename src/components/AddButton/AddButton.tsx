@@ -1,5 +1,6 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import start from "../../assets/images/startButton.svg";
+import './AddButton.css';
 
 export default function AddButton({
   onImageAdd,

@@ -1,16 +1,18 @@
 import { ChangeEvent, useState } from "react";
-import "./BackgroundRemover.css";
 import AddButton from "../../components/AddButton/AddButton";
 import loadImage, { LoadImageResult } from "blueimp-load-image";
-import { API_KEY, API_URL, BASE64_IMAGE_HEADER } from "../../constants";
+import { BASE64_IMAGE_HEADER } from "../../constants";
 import { useStore } from "../../store/StoreProvider";
 import * as api from "../../api/removeBackground";
+import "./BackgroundRemover.css";
 
 const BackgrounRemover = () => {
   const [result, setResult] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { addImage } = useStore();
 
   let uploadImageToServer = (file: File) => {
+    setIsLoading(true);
     loadImage(file, {
       maxWidth: 400,
       maxHeight: 400,
@@ -50,9 +52,13 @@ const BackgrounRemover = () => {
   return (
     <div className="App">
       <header className="App-header">
-        {!result && <AddButton onImageAdd={onImageAdd} />}
+        <AddButton onImageAdd={onImageAdd} />
         <div className="preview-container">
-          {result && <img src={result} width={300} alt="result from the API" />}
+          {result ? (
+            <img src={result} alt="result from the API" />
+          ) : (
+            "Upload an image to get started"
+          )}
         </div>
       </header>
     </div>
