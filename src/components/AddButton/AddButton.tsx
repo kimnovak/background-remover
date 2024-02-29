@@ -12,11 +12,11 @@ export default function AddButton({
         <input
           type="file"
           onChange={onImageAdd}
-          className="file-input"
+          hidden
           id="customFileAdd"
           accept=".png, .jpg, .jpeg"
         />
-        <img src={start} alt="" className="add-button-image" />
+        <img src={start} alt="Plus sign" className="add-button-image" />
       </label>
     </div>
   );

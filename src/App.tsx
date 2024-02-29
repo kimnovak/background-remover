@@ -6,12 +6,10 @@ import { StoreProvider } from "./store/StoreProvider";
 function App() {
   return (
     <StoreProvider>
-      <div className="App">
-        <Sidebar>
-          <FileManager />
-        </Sidebar>
-        <BackgrounRemover />
-      </div>
+      <Sidebar>
+        <FileManager />
+      </Sidebar>
+      <BackgrounRemover />
     </StoreProvider>
   );
 }

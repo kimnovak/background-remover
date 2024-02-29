@@ -7,12 +7,6 @@
   height: 100vh;
 }
 
-.file-input {
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
-}
-
 .add-button-image {
   width: 120px;
 }

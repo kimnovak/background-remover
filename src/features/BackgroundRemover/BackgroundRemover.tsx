@@ -64,7 +64,9 @@ const BackgrounRemover = () => {
     <div className="App">
       <header className="App-header">
         {!result && <AddButton onImageAdd={onImageAdd} />}
-        {result && <img src={result} width={300} alt="result from the API" />}
+        <div className="preview-container">
+            {result && <img src={result} width={300} alt="result from the API" />}
+        </div>
       </header>
     </div>
   );
