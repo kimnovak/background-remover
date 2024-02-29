@@ -82,6 +82,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       return;
     }
     localforage.setItem("folders", folders);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [folders]);
 
   useEffect(() => {
@@ -89,11 +90,13 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       return;
     }
     localforage.setItem("images", images);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [images]);
 
   useEffect(() => {
     hydrateImages();
     setIsFirstRender(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const moveImageToFolder = (imageId: string, folderId = "default-folder") => {
