@@ -1,5 +1,11 @@
 import { nanoid } from "nanoid";
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 import { Folder, ImageItem } from "./types";
 
 type StoreProviderProps = {
@@ -11,12 +17,17 @@ const INITIAL_STATE: {
   folders: Record<string, Folder>;
   addImage: (image: ImageItem) => void;
   addFolder: (name: string) => void;
+  setFolders: React.Dispatch<SetStateAction<Record<string, Folder>>>;
 } = {
   folders: {
     "default-folder": {
       name: "Untitled Folder",
       items: [],
     },
+    "default-folder-1": {
+        name: "Untitled Folder 1",
+        items: [],
+      },
   },
   images: {},
   addImage: (image: ImageItem) => {
@@ -27,6 +38,7 @@ const INITIAL_STATE: {
     {
     }
   },
+  setFolders: (folders: any) => {{}}
 };
 
 const StoreContext = createContext(INITIAL_STATE);
@@ -67,6 +79,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     images,
     addImage,
     addFolder,
+    setFolders,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
