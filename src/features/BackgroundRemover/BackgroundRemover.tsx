@@ -5,6 +5,7 @@ import { BASE64_IMAGE_HEADER } from "../../constants";
 import { useStore } from "../../store/StoreProvider";
 import * as api from "../../api/removeBackground";
 import "./BackgroundRemover.css";
+import Preview from "../../components/Preview/Preview";
 
 const BackgrounRemover = () => {
   const [result, setResult] = useState<string | null>(null);
@@ -38,7 +39,8 @@ const BackgrounRemover = () => {
 
       .catch((error) => {
         console.error(error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   let onImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,11 +56,7 @@ const BackgrounRemover = () => {
       <header className="App-header">
         <AddButton onImageAdd={onImageAdd} />
         <div className="preview-container">
-          {result ? (
-            <img src={result} alt="result from the API" />
-          ) : (
-            "Upload an image to get started"
-          )}
+          <Preview imageSrc={result} hasError={false} isLoading={isLoading} />
         </div>
       </header>
     </div>
