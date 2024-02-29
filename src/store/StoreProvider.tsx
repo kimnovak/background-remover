@@ -32,18 +32,9 @@ const INITIAL_STATE: {
     },
   },
   images: {},
-  addImage: (image: ImageItem) => {
-    {
-    }
-  },
-  addFolder: (name: string) => {
-    {
-    }
-  },
-  setFolders: (folders: any) => {
-    {
-    }
-  },
+  addImage: (image: ImageItem) => {},
+  addFolder: (name: string) => {},
+  setFolders: (folders: any) => {},
 };
 
 const StoreContext = createContext(INITIAL_STATE);
