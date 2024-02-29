@@ -1,4 +1,5 @@
-.folder {
+.file {
+    margin-left: 16px;
     padding: 8px;
     color: white;
     display: flex;

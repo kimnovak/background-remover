@@ -4,6 +4,8 @@ import { Folder } from "../../store/types";
 import Popover from "../../components/Popover/Popover";
 import { useRef, useState } from "react";
 import FolderItem from "../../components/Folder/Folder";
+import FileItem from '../../components/File/File';
+import './FileManager.css';
 
 const FileManager = () => {
   // TODO extract to hook
@@ -85,13 +87,13 @@ const FileManager = () => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            {images[imageId].name}
+                            <FileItem name={images[imageId].name} />
                           </li>
                         )}
                       </Draggable>
                     ))
                   ) : (
-                    <p>No files yet!</p>
+                    <p className="empty-folder">No files yet!</p>
                   )}
 
                   {provided.placeholder}
