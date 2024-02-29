@@ -1,10 +1,13 @@
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useStore } from "../../store/StoreProvider";
 import { Folder } from "../../store/types";
+import Popover from "../../components/Popover/Popover";
+import { useRef, useState } from "react";
 
 const FileManager = () => {
   // TODO extract to hook
-  const { folders, setFolders, images } = useStore();
+  const { folders, addFolder, setFolders, images } = useStore();
+  const [folderName, setFolderName] = useState("");
 
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
@@ -39,8 +42,20 @@ const FileManager = () => {
     setFolders(newFolders);
   };
 
+  const createFolderBtnRef = useRef<HTMLButtonElement>(null);
+
   return (
     <>
+      <button ref={createFolderBtnRef}>Create Folder</button>
+      <Popover isVisible={true} parentRef={createFolderBtnRef}>
+        <input
+          type="text"
+          value={folderName}
+          onChange={(e) => setFolderName(e.target.value)}
+          placeholder="Folder name"
+        />
+        <button onClick={() => addFolder(folderName)}>Add</button>
+      </Popover>
       <DragDropContext onDragEnd={onDragEnd}>
         {Object.entries(folders).map(([folderId, folder]) => (
           <Droppable droppableId={folderId} key={folderId}>

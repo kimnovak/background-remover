@@ -11,9 +11,11 @@ const BackgrounRemover = () => {
   const [result, setResult] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { addImage } = useStore();
+  const [hasError, setHasError] = useState(false);
 
   let uploadImageToServer = (file: File) => {
     setIsLoading(true);
+    setResult(null);
     loadImage(file, {
       maxWidth: 400,
       maxHeight: 400,
@@ -38,6 +40,7 @@ const BackgrounRemover = () => {
       })
 
       .catch((error) => {
+        setHasError(true);
         console.error(error);
       })
       .finally(() => setIsLoading(false));
@@ -55,7 +58,7 @@ const BackgrounRemover = () => {
     <div className="background-remover">
       <AddButton onImageAdd={onImageAdd} />
       <div className="preview-container">
-        <Preview imageSrc={result} hasError={false} isLoading={isLoading} />
+        <Preview imageSrc={result} hasError={hasError} isLoading={isLoading} />
       </div>
     </div>
   );
