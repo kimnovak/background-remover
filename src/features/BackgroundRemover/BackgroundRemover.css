@@ -1,6 +1,12 @@
+.background-remover {
+  width: calc(100% - 256px);
+  margin-left: 256px;
+}
+
 .preview-container {
   width: 400px;
   height: 400px;
+  margin: auto;
   border: 1px dashed #2f2f2f;
   color: black;
   display: flex;

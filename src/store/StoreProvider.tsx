@@ -61,7 +61,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     };
     setFolders((prev) => ({ ...prev, [folderId]: folder }));
   };
-  console.log({ folders });
+
   const value = {
     folders,
     images,

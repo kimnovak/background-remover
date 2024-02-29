@@ -52,13 +52,11 @@ const BackgrounRemover = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <AddButton onImageAdd={onImageAdd} />
-        <div className="preview-container">
-          <Preview imageSrc={result} hasError={false} isLoading={isLoading} />
-        </div>
-      </header>
+    <div className="background-remover">
+      <AddButton onImageAdd={onImageAdd} />
+      <div className="preview-container">
+        <Preview imageSrc={result} hasError={false} isLoading={isLoading} />
+      </div>
     </div>
   );
 };
