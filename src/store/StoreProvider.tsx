@@ -16,9 +16,11 @@ type StoreProviderProps = {
 
 const INITIAL_STATE: {
   images: Record<string, ImageItem>;
+  imagePreview: string;
   folders: Record<string, Folder>;
   addImage: (image: ImageItem) => void;
   addFolder: (name: string) => void;
+  setImagePreview: (preview: string) => void;
   setFolders: React.Dispatch<SetStateAction<Record<string, Folder>>>;
 } = {
   folders: {
@@ -32,9 +34,11 @@ const INITIAL_STATE: {
     },
   },
   images: {},
+  imagePreview: "",
   addImage: (image: ImageItem) => {},
   addFolder: (name: string) => {},
-  setFolders: (folders: any) => {},
+  setFolders: (folders: SetStateAction<Record<string, Folder>>) => {},
+  setImagePreview: (preview: string) => {},
 };
 
 const StoreContext = createContext(INITIAL_STATE);
@@ -44,6 +48,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [images, setImages] = useState<Record<string, ImageItem>>(
     INITIAL_STATE.images
   );
+  const [imagePreview, setImagePreview] = useState("");
   const [isFirstRender, setIsFirstRender] = useState(true);
 
   const hydrateFolders = async () => {
@@ -120,9 +125,11 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const value = {
     folders,
     images,
+    imagePreview,
     addImage,
     addFolder,
     setFolders,
+    setImagePreview,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

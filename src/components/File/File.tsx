@@ -3,11 +3,12 @@ import "./File.css";
 
 type FileProps = {
   name: string;
+  onClick: () => void;
 };
 
-const File = ({ name }: FileProps) => {
+const File = ({ name, onClick }: FileProps) => {
   return (
-    <div className="file">
+    <div className="file" onClick={onClick}>
       <FaFile color="white" />
       {name}
     </div>

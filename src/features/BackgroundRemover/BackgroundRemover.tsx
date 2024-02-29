@@ -8,14 +8,13 @@ import "./BackgroundRemover.css";
 import Preview from "../../components/Preview/Preview";
 
 const BackgrounRemover = () => {
-  const [result, setResult] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { addImage } = useStore();
+  const { imagePreview, addImage, setImagePreview } = useStore();
   const [hasError, setHasError] = useState(false);
 
-  let uploadImageToServer = (file: File) => {
+  const uploadImageToServer = (file: File) => {
     setIsLoading(true);
-    setResult(null);
+    setImagePreview("");
     loadImage(file, {
       maxWidth: 400,
       maxHeight: 400,
@@ -31,7 +30,7 @@ const BackgrounRemover = () => {
         };
         const result = await api.removeBackground(data);
         const base64Result = BASE64_IMAGE_HEADER + result.result_b64;
-        setResult(base64Result);
+        setImagePreview(base64Result);
         addImage({
           name: file.name,
           originalBase64: imageBase64,
@@ -58,7 +57,11 @@ const BackgrounRemover = () => {
     <div className="background-remover">
       <AddButton onImageAdd={onImageAdd} />
       <div className="preview-container">
-        <Preview imageSrc={result} hasError={hasError} isLoading={isLoading} />
+        <Preview
+          imageSrc={imagePreview}
+          hasError={hasError}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

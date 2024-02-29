@@ -7,8 +7,7 @@ import "./FileManager.css";
 import CreateFolder from "./CreateFolder/CreateFolder";
 
 const FileManager = () => {
-  // TODO extract to hook
-  const { folders, setFolders, images } = useStore();
+  const { folders, setFolders, images, setImagePreview } = useStore();
 
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
@@ -68,7 +67,12 @@ const FileManager = () => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <FileItem name={images[imageId].name} />
+                            <FileItem
+                              name={images[imageId].name}
+                              onClick={() =>
+                                setImagePreview(images[imageId].resultBase64)
+                              }
+                            />
                           </li>
                         )}
                       </Draggable>
