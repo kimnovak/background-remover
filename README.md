@@ -38,3 +38,4 @@ store - state management
 ## Future improvements
 Improving CSS, currently only primary-color is added as a variable and for the app to be able to scale it will need a better design system in place.
 Adding the possibility to rename folders
+Better separation of concerns
