@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import {
   ReactNode,
   SetStateAction,
@@ -110,13 +109,13 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   };
 
   const addImage = (image: ImageItem) => {
-    const imageId = nanoid();
+    const imageId = Math.random().toString();
     setImages((prev) => ({ ...prev, [imageId]: image }));
     moveImageToFolder(imageId);
   };
 
   const addFolder = (name: string) => {
-    const folderId = nanoid();
+    const folderId = Math.random().toString();
     const folder = {
       name,
       items: [],
