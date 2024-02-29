@@ -72,7 +72,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     try {
       const images: Record<string, ImageItem> | null =
         await localforage.getItem("images");
-      console.log({ images });
+
       if (images) {
         setImages(images);
         hydrateFolders();
@@ -84,14 +84,14 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
 
   useEffect(() => {
     if (isFirstRender) {
-        return;
+      return;
     }
     localforage.setItem("folders", folders);
   }, [folders]);
 
   useEffect(() => {
     if (isFirstRender) {
-        return;
+      return;
     }
     localforage.setItem("images", images);
   }, [images]);

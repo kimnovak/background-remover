@@ -1,0 +1,21 @@
+.create-folder-btn {
+    height: 48px;
+    width: 150px;
+    border-radius: 8px;
+    background-color: white;
+    color: var(--primary-color);
+    font-style: bold;
+    border: none;
+}
+
+.folder-input {
+    width: 80%;
+}
+
+.add-folder-btn {
+    background-color: white;
+    color: var(--primary-color);
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+}
