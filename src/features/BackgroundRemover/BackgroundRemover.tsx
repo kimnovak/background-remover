@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import AddButton from "../../components/AddButton/AddButton";
+import UploadButton from "../../components/UploadButton/UploadButton";
 import loadImage, { LoadImageResult } from "blueimp-load-image";
 import { BASE64_IMAGE_HEADER } from "../../constants";
 import { useStore } from "../../store/StoreProvider";
@@ -56,13 +56,18 @@ const BackgrounRemover = () => {
 
   return (
     <div className="background-remover">
-      <AddButton onImageAdd={onImageAdd} />
+      <div className="upload-image-container">
+        <UploadButton onImageAdd={onImageAdd} />
+      </div>
       <div className="preview-container">
         <Preview
           imageSrc={imagePreview}
           hasError={hasError}
           isLoading={isLoading}
         />
+        {!imagePreview && !isLoading && (
+          <UploadButton onImageAdd={onImageAdd} />
+        )}
       </div>
     </div>
   );

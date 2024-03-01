@@ -1,5 +1,5 @@
 .background-remover {
-  width: calc(100% - 256px);
+  width: calc(100% - 272px);
   margin-left: 256px;
 }
 
@@ -10,6 +10,16 @@
   border: 1px dashed #2f2f2f;
   color: black;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+}
+
+.upload-image-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-right: 16px;
+  margin-top: 16px;
 }

@@ -1,0 +1,26 @@
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-end;
+  height: 48px;
+  width: 150px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.add-button-label:hover {
+  opacity: 0.9;
+}
+
+.add-button-image {
+  width: 120px;
+}
+
+.add-button:hover {
+  background-color: darkred;
+}
