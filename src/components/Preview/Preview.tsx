@@ -1,5 +1,5 @@
-import { FaSpinner } from "react-icons/fa";
-import './Preview.css';
+import { FaSadTear, FaSpinner } from "react-icons/fa";
+import "./Preview.css";
 
 type PreviewProps = {
   isLoading: boolean;
@@ -17,7 +17,12 @@ const Preview = ({ isLoading, hasError, imageSrc }: PreviewProps) => {
   }
 
   if (hasError && !imageSrc) {
-    return <div>Oh oh something went wrong, please try again</div>;
+    return (
+      <div className="error-container">
+        <FaSadTear size={24} fill="var(--primary-color)" /> Oh oh something went
+        wrong, please try again
+      </div>
+    );
   }
 
   if (!imageSrc) {
