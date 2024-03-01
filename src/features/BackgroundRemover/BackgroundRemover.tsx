@@ -14,6 +14,7 @@ const BackgrounRemover = () => {
 
   const uploadImageToServer = (file: File) => {
     setIsLoading(true);
+    setHasError(false);
     setImagePreview("");
     loadImage(file, {
       maxWidth: 400,

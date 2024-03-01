@@ -9,7 +9,7 @@ const Preview = ({ isLoading, hasError, imageSrc }: PreviewProps) => {
     return <div>Loading</div>;
   }
 
-  if (hasError) {
+  if (hasError && !imageSrc) {
     return <div>Oh oh something went wrong, please try again</div>;
   }
 
