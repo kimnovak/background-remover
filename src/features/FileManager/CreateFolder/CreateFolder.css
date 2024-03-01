@@ -1,25 +1,56 @@
+.create-folder-btn-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
 .create-folder-btn {
     height: 48px;
     width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 8px;
     background-color: white;
     color: var(--primary-color);
-    font-style: bold;
+    font-weight: bold;
     border: none;
     cursor: pointer;
+    gap: 4px;
+}
+
+.create-folder-title {
+    margin-bottom: 24px;
+}
+
+.create-folder-form-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
 .folder-input {
+    padding: 4px;
     width: 80%;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .add-folder-btn {
-    background-color: white;
-    color: var(--primary-color);
-    width: 80%;
+    background-color: var(--primary-color);
+    border: none;
+    height: 26px;
+    color: white;
+    width: 50%;
     border-radius: 8px;
-    border: 1px solid var(--primary-color);
     cursor: pointer;
+}
+
+.add-folder-btn:hover {
+    background-color: darkred;
 }
 
 .error-message {
