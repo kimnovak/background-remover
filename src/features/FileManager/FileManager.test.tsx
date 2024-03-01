@@ -39,4 +39,20 @@ describe("File Manager", () => {
       ).toBeVisible();
     });
   });
+  it("Shows an error message when user tries to submit empty folder name", async () => {
+    setup();
+    const toggleButton = screen.getByTestId("@create-folder/create-folder-btn");
+    const user = userEvent;
+    user.click(toggleButton);
+    expect(screen.getByTestId("@components/popover")).toBeVisible();
+    const input = screen.getByTestId("@create-folder/input");
+    expect(input.textContent).toBe("");
+    const submitBtn = screen.getByTestId("@create-folder/submit-btn");
+    user.click(submitBtn);
+    const errorMessage = screen.getByTestId("@create-folder/error-message");
+    expect(errorMessage).toBeVisible();
+    user.type(input, "New folder 1");
+    user.click(submitBtn);
+    expect(errorMessage).not.toBeVisible();
+  });
 });

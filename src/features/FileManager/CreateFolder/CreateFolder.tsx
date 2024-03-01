@@ -43,7 +43,14 @@ const CreateFolder = () => {
           onChange={(e) => setFolderName(e.target.value)}
           placeholder="Folder name"
         />
-        <p className="error-message">{errorMessage}</p>
+        {errorMessage && (
+          <p
+            data-testid="@create-folder/error-message"
+            className="error-message"
+          >
+            {errorMessage}
+          </p>
+        )}
         <button
           data-testid="@create-folder/submit-btn"
           onClick={handleSubmit}
