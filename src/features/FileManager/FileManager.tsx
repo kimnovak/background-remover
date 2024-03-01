@@ -7,7 +7,6 @@ import CreateFolder from "./CreateFolder/CreateFolder";
 
 const FileManager = () => {
   const { folders, setFolderItems, images, setImagePreview } = useStore();
-  console.log({ folders, images });
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
 

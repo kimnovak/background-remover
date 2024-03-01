@@ -37,7 +37,6 @@ export const useImages = () => {
   };
 
   useEffect(() => {
-    console.log({ images });
     if (!hasRehydrated) {
       loadFromStorage();
       return;
