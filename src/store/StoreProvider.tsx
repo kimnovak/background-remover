@@ -40,7 +40,7 @@ const INITIAL_STATE: {
   setImagePreview: (preview: string) => {},
 };
 
-const StoreContext = createContext(INITIAL_STATE);
+export const StoreContext = createContext(INITIAL_STATE);
 
 export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [folders, setFolders] = useState(INITIAL_STATE.folders);

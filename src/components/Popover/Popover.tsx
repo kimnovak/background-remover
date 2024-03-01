@@ -11,6 +11,7 @@ type PopoverProps = {
 const Popover = ({ children, isVisible, parentRef, close }: PopoverProps) => {
   return isVisible && parentRef.current ? (
     <div
+      data-testid='@components/popover'
       style={{
         top: parentRef.current.offsetTop + parentRef.current.offsetHeight + 5, // Position below the button
         left: parentRef.current.offsetLeft,

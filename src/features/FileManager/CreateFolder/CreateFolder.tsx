@@ -12,22 +12,34 @@ const CreateFolder = () => {
   return (
     <>
       <button
+        data-testid="@create-folder/create-folder-btn"
         className="create-folder-btn"
         ref={createFolderBtnRef}
         onClick={() => setIsPopoverVisible((prev) => !prev)}
       >
         Create Folder
       </button>
-      <Popover isVisible={isPopoverVisible} parentRef={createFolderBtnRef} close={() => setIsPopoverVisible(false)}>
+      <Popover
+        isVisible={isPopoverVisible}
+        parentRef={createFolderBtnRef}
+        close={() => setIsPopoverVisible(false)}
+      >
         <label>Folder name:</label>
         <input
+          data-testid="@create-folder/input"
           type="text"
           className="folder-input"
           value={folderName}
           onChange={(e) => setFolderName(e.target.value)}
           placeholder="Folder name"
         />
-        <button onClick={() => addFolder(folderName)} className="add-folder-btn">Add</button>
+        <button
+          data-testid="@create-folder/submit-btn"
+          onClick={() => addFolder(folderName)}
+          className="add-folder-btn"
+        >
+          Add
+        </button>
       </Popover>
     </>
   );
