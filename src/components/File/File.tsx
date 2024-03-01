@@ -9,7 +9,7 @@ type FileProps = {
 const File = ({ name, onClick }: FileProps) => {
   return (
     <div className="file" onClick={onClick}>
-      <FaFile color="white" />
+      <FaFile color="white" className="icon"/>
       {name}
     </div>
   );

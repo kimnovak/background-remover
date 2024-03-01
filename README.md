@@ -28,12 +28,12 @@ To see the app running visit http://localhost:3000/
 
 ## Technical decisions
 Due to simplicity of the project, Context API + useState hook are used for state management
-Store is structured in 2 sections - folders and images. The tradeoff here was to improve maintainability and reduce coupling but have slightly more complex state management, instead of storing images under folders as well
+Store is structured in 2 sections - folders and images. The tradeoff here was to improve maintainability and reduce coupling but have slightly more complex state management, instead of storing images under folders as well  
 The app is structured in following sections:
-components - reusable components
-features - components that have business logic in them
-assets - contains app assets
-store - state management
+components - reusable components  
+features - components that have business logic in them  
+assets - contains app assets  
+store - state management  
 
 ## Future improvements
 Improving CSS, currently only primary-color is added as a variable and for the app to be able to scale it will need a better design system in place.

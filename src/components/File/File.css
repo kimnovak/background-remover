@@ -4,6 +4,8 @@
     color: white;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
+}
+
+.icon {
+    margin-right: 4px;
 }

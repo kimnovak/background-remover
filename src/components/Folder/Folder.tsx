@@ -8,7 +8,7 @@ type FolderProps = {
 const Folder = ({ name }: FolderProps) => {
   return (
     <div className="folder">
-      <FaFolder color="white" />
+      <FaFolder color="white" className="icon" />
       {name}
     </div>
   );

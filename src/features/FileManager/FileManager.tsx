@@ -78,7 +78,9 @@ const FileManager = () => {
                       </Draggable>
                     ))
                   ) : (
-                    <p className="empty-folder">No files yet!</p>
+                    <li>
+                      <p className="empty-folder">No files yet!</p>
+                    </li>
                   )}
 
                   {provided.placeholder}
