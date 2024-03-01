@@ -9,7 +9,7 @@ import "./BackgroundRemover.css";
 
 const BackgrounRemover = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { imagePreview, addImage, setImagePreview } = useStore();
+  const { imagePreview, addImage, moveImageToFolder, setImagePreview } = useStore();
   const [hasError, setHasError] = useState(false);
 
   const uploadImageToServer = (file: File) => {
@@ -32,11 +32,12 @@ const BackgrounRemover = () => {
         const result = await api.removeBackground(data);
         const base64Result = BASE64_IMAGE_HEADER + result.result_b64;
         setImagePreview(base64Result);
-        addImage({
+        const imageId = addImage({
           name: file.name,
           originalBase64: imageBase64,
           resultBase64: base64Result,
         });
+        moveImageToFolder(imageId);
       })
 
       .catch((error) => {

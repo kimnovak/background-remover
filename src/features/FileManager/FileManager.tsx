@@ -1,14 +1,13 @@
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useStore } from "../../store/StoreProvider";
-import { Folder } from "../../store/types";
 import FolderItem from "../../components/Folder/Folder";
 import FileItem from "../../components/File/File";
 import "./FileManager.css";
 import CreateFolder from "./CreateFolder/CreateFolder";
 
 const FileManager = () => {
-  const { folders, setFolders, images, setImagePreview } = useStore();
-
+  const { folders, setFolderItems, images, setImagePreview } = useStore();
+  console.log({ folders, images });
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
 
@@ -29,17 +28,10 @@ const FileManager = () => {
     const [removed] = sourceItems.splice(source.index, 1);
     destItems.splice(destination.index, 0, removed);
 
-    // Updating state with the new folders and items
-    const newFolders: Record<string, Folder> = {
-      ...folders,
-      [source.droppableId]: { ...sourceFolder, items: sourceItems },
-    };
-
     if (source.droppableId !== destination.droppableId) {
-      newFolders[destination.droppableId] = { ...destFolder, items: destItems };
+      setFolderItems(destination.droppableId, destItems);
     }
-
-    setFolders(newFolders);
+    setFolderItems(source.droppableId, sourceItems);
   };
 
   return (
@@ -55,28 +47,33 @@ const FileManager = () => {
                 </div>
                 <ul>
                   {folder.items.length ? (
-                    folder.items.map((imageId, index) => (
-                      <Draggable
-                        key={imageId}
-                        draggableId={imageId}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
+                    folder.items.map(
+                      (imageId, index) =>
+                        !!images[imageId] && (
+                          <Draggable
+                            key={imageId}
+                            draggableId={imageId}
+                            index={index}
                           >
-                            <FileItem
-                              name={images[imageId].name}
-                              onClick={() =>
-                                setImagePreview(images[imageId].resultBase64)
-                              }
-                            />
-                          </li>
-                        )}
-                      </Draggable>
-                    ))
+                            {(provided) => (
+                              <li
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <FileItem
+                                  name={images[imageId].name}
+                                  onClick={() =>
+                                    setImagePreview(
+                                      images[imageId].resultBase64
+                                    )
+                                  }
+                                />
+                              </li>
+                            )}
+                          </Draggable>
+                        )
+                    )
                   ) : (
                     <li>
                       <p className="empty-folder">No files yet!</p>
