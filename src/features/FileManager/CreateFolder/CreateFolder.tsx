@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import Popover from "../../../components/Popover/Popover";
 import { useStore } from "../../../store/StoreProvider";
-import "./CreateFolder.css";
 import { FaPlus } from "react-icons/fa";
+import "./CreateFolder.css";
 
 const CreateFolder = () => {
   const createFolderBtnRef = useRef<HTMLButtonElement>(null);
@@ -22,6 +22,12 @@ const CreateFolder = () => {
     setIsPopoverVisible(false);
   };
 
+  const handleClose = () => {
+    setIsPopoverVisible(false);
+    setErrorMessage("");
+    setFolderName("");
+  };
+
   return (
     <>
       <div className="create-folder-btn-container">
@@ -37,7 +43,7 @@ const CreateFolder = () => {
       <Popover
         isVisible={isPopoverVisible}
         parentRef={createFolderBtnRef}
-        close={() => setIsPopoverVisible(false)}
+        close={handleClose}
       >
         <div className="create-folder-title">Create New Folder</div>
         <div className="create-folder-form-wrapper">
