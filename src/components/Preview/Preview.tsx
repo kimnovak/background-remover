@@ -1,3 +1,6 @@
+import { FaSpinner } from "react-icons/fa";
+import './Preview.css';
+
 type PreviewProps = {
   isLoading: boolean;
   hasError: boolean;
@@ -6,7 +9,11 @@ type PreviewProps = {
 
 const Preview = ({ isLoading, hasError, imageSrc }: PreviewProps) => {
   if (isLoading) {
-    return <div>Loading</div>;
+    return (
+      <div className="spinner">
+        <FaSpinner size={48} fill="var(--primary-color)" />
+      </div>
+    );
   }
 
   if (hasError && !imageSrc) {

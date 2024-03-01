@@ -4,8 +4,8 @@ import loadImage, { LoadImageResult } from "blueimp-load-image";
 import { BASE64_IMAGE_HEADER } from "../../constants";
 import { useStore } from "../../store/StoreProvider";
 import * as api from "../../api/removeBackground";
-import "./BackgroundRemover.css";
 import Preview from "../../components/Preview/Preview";
+import "./BackgroundRemover.css";
 
 const BackgrounRemover = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +46,7 @@ const BackgrounRemover = () => {
       .finally(() => setIsLoading(false));
   };
 
-  let onImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
+  const onImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       uploadImageToServer(e.target.files[0]);
     } else {
