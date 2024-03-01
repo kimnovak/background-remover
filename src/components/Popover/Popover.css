@@ -19,3 +19,7 @@
     border: none;
     cursor: pointer;
 }
+
+.close-btn:hover>svg {
+    fill: darkred;
+}

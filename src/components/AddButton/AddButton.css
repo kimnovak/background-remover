@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.add-button-label:hover {
+  opacity: 0.9;
+}
+
 .add-button-image {
   width: 120px;
 }

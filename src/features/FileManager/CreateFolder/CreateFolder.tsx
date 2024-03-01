@@ -18,6 +18,8 @@ const CreateFolder = () => {
     }
     setErrorMessage("");
     addFolder(folderName);
+    setFolderName("");
+    setIsPopoverVisible(false);
   };
 
   return (

@@ -43,7 +43,7 @@ const FileManager = () => {
   };
 
   return (
-    <div data-testid="@file-manager/container">
+    <div data-testid="@file-manager/container" className="file-manager">
       <CreateFolder />
       <DragDropContext onDragEnd={onDragEnd}>
         {Object.entries(folders).map(([folderId, folder]) => (
