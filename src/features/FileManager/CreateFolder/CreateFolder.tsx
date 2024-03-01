@@ -7,7 +7,17 @@ const CreateFolder = () => {
   const createFolderBtnRef = useRef<HTMLButtonElement>(null);
   const [folderName, setFolderName] = useState("");
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { addFolder } = useStore();
+
+  const handleSubmit = () => {
+    if (!folderName) {
+      setErrorMessage("Folder name can't be empty!");
+      return;
+    }
+    setErrorMessage("");
+    addFolder(folderName);
+  };
 
   return (
     <>
@@ -33,9 +43,10 @@ const CreateFolder = () => {
           onChange={(e) => setFolderName(e.target.value)}
           placeholder="Folder name"
         />
+        <p className="error-message">{errorMessage}</p>
         <button
           data-testid="@create-folder/submit-btn"
-          onClick={() => addFolder(folderName)}
+          onClick={handleSubmit}
           className="add-folder-btn"
         >
           Add
